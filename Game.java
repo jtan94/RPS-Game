@@ -32,8 +32,16 @@ public class Game {
 	Player yourPlayer = new HumanPlayer();
         Player yourOpponent = new BotPlayer();
 
-	Move yourMove = yourPlayer.makeMove();
-	Move opponentMove = yourOpponent.makeMove();
+	Move yourMove = null;
+	Move opponentMove = null;
+	try {
+	    yourMove = yourPlayer.makeMove();
+	    opponentMove = yourOpponent.makeMove();
+	} catch (InvalidMoveException ex) {
+	    System.err.println(ex.getMessage() + "\nYou don't get to play.");
+	    System.exit(1);
+	}
+
 	System.out.println("You chose " + yourMove + " and your opponent chose " + opponentMove);
 	
 	Outcome gameOutcome = determineOutcome(yourMove, opponentMove);

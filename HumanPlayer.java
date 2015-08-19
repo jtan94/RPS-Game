@@ -15,7 +15,7 @@ public class HumanPlayer implements Player {
     }
 
 
-    public Game.Move makeMove() {
+    public Game.Move makeMove() throws InvalidMoveException {
 
 	String userInput = getPlayerInput().toLowerCase().trim();
 	Game.Move userMove = null;
@@ -36,7 +36,10 @@ public class HumanPlayer implements Player {
 	case "scissors":
 	    userMove = Game.Move.SCISSORS;
 	    break;
+	default:
+	    throw new InvalidMoveException("Invalid move.");
 	}
+    
 	    
 	return userMove;
     }
