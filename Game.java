@@ -2,11 +2,11 @@ public class Game {
 
     public void playGame() {
 
-	Player yourPlayer = new Player();
-        Opponent yourOpponent = new Opponent();
+	Player yourPlayer = new HumanPlayer();
+        Player yourOpponent = new BotPlayer();
 
-	Move yourMove = yourPlayer.play();
-	Move opponentMove = yourOpponent.play();
+	Move yourMove = yourPlayer.makeMove();
+	Move opponentMove = yourOpponent.makeMove();
 	System.out.println("You chose " + yourMove + " and your opponent chose " + opponentMove);
 
 	if (yourMove == opponentMove) {

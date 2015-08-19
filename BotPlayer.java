@@ -1,8 +1,8 @@
 import java.util.Random;
 
-public class Opponent {
+public class BotPlayer implements Player{
 
-    public Game.Move play() {
+    public Game.Move makeMove() {
 	Game.Move[] MoveValues = Game.Move.values();
         return MoveValues[(int)(Math.random()*MoveValues.length)];
     }
