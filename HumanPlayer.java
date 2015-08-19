@@ -9,7 +9,7 @@ public class HumanPlayer implements Player {
     }
 
     private String getPlayerInput() {
-	System.out.println("Please enter : rock, paper, scissors");
+	System.out.println("Please enter: rock (r), paper (p), or scissors (s).");
 	String input = in.nextLine();
 	return input;
     }
