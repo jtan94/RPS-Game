@@ -4,9 +4,12 @@ public class HumanPlayer implements Player {
 
     private Scanner in;
 
+    public HumanPlayer() {
+	in = new Scanner(System.in);
+    }
+
     private String getPlayerInput() {
 	System.out.println("Please enter : rock, paper, scissors");
-	in = new Scanner(System.in);
 	String input = in.nextLine();
 	return input;
     }
@@ -14,22 +17,27 @@ public class HumanPlayer implements Player {
 
     public Game.Move makeMove() {
 
-	String userInput = getPlayerInput();
-	Game.Move userMove;
+	String userInput = getPlayerInput().toLowerCase().trim();
+	Game.Move userMove = null;
 
-	if (userInput.startsWith("r") || userInput.startsWith("R") ) {
-	    userInput = "ROCK";
+	// TODO: check that input is valid and loop until it is
+
+	switch (userInput) {
+
+	case "r":
+	case "rock":
 	    userMove = Game.Move.ROCK;
-	} else if (userInput.startsWith("p") || userInput.startsWith("P")) {
-	    userInput = "PAPER";
+	    break;
+	case "p":
+	case "paper":
 	    userMove = Game.Move.PAPER;
-	} else if (userInput.startsWith("s") || userInput.startsWith("S")) {
-	    userInput = "SCISSORS";
+	    break;
+	case "s":
+	case "scissors":
 	    userMove = Game.Move.SCISSORS;
-	} else {
-	    System.out.println("Input doesn't make sense. Try again stupid.");
+	    break;
 	}
-
+	    
 	return userMove;
     }
 }
