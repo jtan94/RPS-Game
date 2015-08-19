@@ -1,4 +1,3 @@
-
 public enum Move {
     ROCK,
     PAPER,
