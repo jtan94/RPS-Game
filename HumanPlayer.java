@@ -39,7 +39,6 @@ public class HumanPlayer implements Player {
 	default:
 	    throw new InvalidMoveException("Invalid move.");
 	}
-    
 	    
 	return userMove;
     }

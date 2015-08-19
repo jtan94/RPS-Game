@@ -2,9 +2,14 @@ import java.util.Random;
 
 public class BotPlayer implements Player{
 
-    public Game.Move makeMove() {
-	Game.Move[] MoveValues = Game.Move.values();
-        return MoveValues[(int)(Math.random()*MoveValues.length)];
+    private Random rand;
+
+    public BotPlayer() {
+	rand = new Random();
     }
 
+    public Game.Move makeMove() {
+	Game.Move[] moves = Game.Move.values();
+        return moves[rand.nextInt(moves.length)];
+    }
 }
