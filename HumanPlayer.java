@@ -2,23 +2,20 @@ import java.util.Scanner;
 
 public class HumanPlayer implements Player {
 
-    String userInput;
-    Game.Move userMove;
-    String input;
-
     private Scanner in;
 
     private String getPlayerInput() {
 	System.out.println("Please enter : rock, paper, scissors");
 	in = new Scanner(System.in);
-	input = in.nextLine();
+	String input = in.nextLine();
 	return input;
     }
 
 
     public Game.Move makeMove() {
 
-	userInput = getPlayerInput();
+	String userInput = getPlayerInput();
+	Game.Move userMove;
 
 	if (userInput.startsWith("r") || userInput.startsWith("R") ) {
 	    userInput = "ROCK";
