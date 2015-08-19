@@ -30,4 +30,10 @@ public class Game {
         Game myGame = new Game();
         myGame.playGame();
     }
+
+    public enum Move {
+	ROCK,
+	PAPER,
+	SCISSORS
+    }
 }

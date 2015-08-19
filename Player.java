@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Player {
 
     String userInput;
-    Move userMove;
+    Game.Move userMove;
     String input;
 
     private Scanner in;
@@ -15,19 +15,20 @@ public class Player {
 	return input;
     }
 
-    public Move play() {
+
+    public Game.Move play() {
 
 	userInput = getPlayerInput();
 
 	if (userInput.startsWith("r") || userInput.startsWith("R") ) {
 	    userInput = "ROCK";
-	    userMove = Move.ROCK;
+	    userMove = Game.Move.ROCK;
 	} else if (userInput.startsWith("p") || userInput.startsWith("P")) {
 	    userInput = "PAPER";
-	    userMove = Move.PAPER;
+	    userMove = Game.Move.PAPER;
 	} else if (userInput.startsWith("s") || userInput.startsWith("S")) {
 	    userInput = "SCISSORS";
-	    userMove = Move.SCISSORS;
+	    userMove = Game.Move.SCISSORS;
 	} else {
 	    System.out.println("Input doesn't make sense. Try again stupid.");
 	}
