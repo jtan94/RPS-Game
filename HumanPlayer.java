@@ -33,7 +33,6 @@ public class HumanPlayer implements Player {
 	    System.out.println("Input doesn't make sense. Try again stupid.");
 	}
 
-	System.out.println("Your choice was  " + userInput);
 	return userMove;
     }
 }

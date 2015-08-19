@@ -34,6 +34,10 @@ public class Game {
     public enum Move {
 	ROCK,
 	PAPER,
-	SCISSORS
+	SCISSORS;
+
+	public String toString() {
+	    return this.name().charAt(0) + this.name().substring(1).toLowerCase();
+	}
     }
 }
