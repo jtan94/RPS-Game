@@ -1,32 +1,81 @@
-
 public class Game {
-    static Move yourMove;
-	static Move opponentMove;
-	public void playGame() {
-		Player yourPlayer = new Player();
-        Opponent yourOpponent = new Opponent();
-		yourMove = yourPlayer.play();
-		opponentMove = yourOpponent.play();
-		System.out.println("You chose " + yourMove + " and your opponent chose " + opponentMove);
-		 if (yourMove == opponentMove) {
-			 System.out.println("You both answered " + yourMove + " please try again!");
-	     } else if (yourMove == Move.ROCK && opponentMove == Move.SCISSORS) {
-	         System.out.println("You won");
-	     } else if (yourMove == Move.ROCK && opponentMove == Move.PAPER) {
-	         System.out.println("You lost");
-	     } else if (yourMove == Move.SCISSORS && opponentMove == Move.ROCK) {
-	         System.out.println("You lost");
-	     } else if (yourMove == Move.SCISSORS && opponentMove == Move.PAPER) {
-	         System.out.println("You won");
-	     } else if (yourMove == Move.PAPER && opponentMove == Move.ROCK) {
-	         System.out.println("You won");
-	     } else if (yourMove == Move.PAPER && opponentMove == Move.SCISSORS) {
-	         System.out.println("You lost");
-	     }
-	  }
 
-	public static void main (String[] args) {
+    private Outcome determineOutcome(Move humanMove, Move botMove) {
+	 Outcome gameOutcome = Outcome.TIE;
+
+	// only need to set cases where you win or lose
+	if (humanMove == Move.ROCK) {
+	    if (botMove == Move.SCISSORS) {
+		gameOutcome = Outcome.WIN;
+	    } else if (botMove == Move.PAPER) {
+		gameOutcome = Outcome.LOSE;
+	    }
+	} else if (humanMove == Move.PAPER) {
+	    if (botMove == Move.ROCK) {
+		gameOutcome = Outcome.WIN;
+	    } else if (botMove == Move.SCISSORS) {
+		gameOutcome = Outcome.LOSE;
+	    } 
+	} else { // humanMove = Move.SCISSORS
+	    if (botMove == Move.PAPER) {
+		gameOutcome = Outcome.WIN;
+	    } else if (botMove == Move.ROCK) {
+		gameOutcome = Outcome.LOSE;
+	    }
+	}
+
+	return gameOutcome;
+    }
+
+    public void playGame() {
+
+	Player yourPlayer = new HumanPlayer();
+        Player yourOpponent = new BotPlayer();
+
+	Move yourMove = null;
+	Move opponentMove = null;
+	try {
+	    yourMove = yourPlayer.makeMove();
+	    opponentMove = yourOpponent.makeMove();
+	} catch (InvalidMoveException ex) {
+	    System.err.println(ex.getMessage() + "\nYou don't get to play.");
+	    System.exit(1);
+	}
+
+	System.out.println("You chose " + yourMove + " and your opponent chose " + opponentMove);
+	
+	Outcome gameOutcome = determineOutcome(yourMove, opponentMove);
+	switch (gameOutcome) {
+	case WIN:
+	    System.out.println("You won.");
+	    break;
+	case LOSE:
+	    System.out.println("You lost.");
+	    break;
+	case TIE:
+	    System.out.println("You tied.");
+	    break;
+	}
+    }
+
+    public static void main (String[] args) {
         Game myGame = new Game();
         myGame.playGame();
+    }
+
+    public enum Move {
+	ROCK,
+	PAPER,
+	SCISSORS;
+
+	public String toString() {
+	    return this.name().charAt(0) + this.name().substring(1).toLowerCase();
+	}
+    }
+
+    public enum Outcome {
+	WIN,
+	LOSE,
+	TIE;
     }
 }
